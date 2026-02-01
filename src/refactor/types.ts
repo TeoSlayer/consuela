@@ -249,19 +249,7 @@ export interface MergeOptions {
   rootDir?: string;
 }
 
-// ============================================================================
-// Reorganize Types
-// ============================================================================
-
-/** A file move operation in the reorganization plan */
-export interface FileMove {
-  /** Current file path (relative to root) */
-  currentPath: string;
-  /** New file path (relative to root) */
-  newPath: string;
-  /** Why this file is being moved */
-  reason?: string;
-}/** Import update needed for a file move */
+/** Import update needed for a file move */
 export interface ImportUpdate {
   /** File containing the import */
   file: string;

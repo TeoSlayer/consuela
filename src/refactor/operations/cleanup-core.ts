@@ -335,6 +335,13 @@ async function removeExportsFromFile(
   // Clean up any resulting double blank lines
   newContent = newContent.replace(/\n\n\n+/g, '\n\n');
 
+  // Ensure proper spacing between declarations after removal
+  // Fix cases where closing brace ends up directly touching comments or declarations
+  newContent = newContent.replace(/\}(\/\*\*)/g, '}\n\n$1');
+  newContent = newContent.replace(/\}(\/\/)/g, '}\n\n$1');
+  newContent = newContent.replace(/\}(export\s)/g, '}\n\n$1');
+  newContent = newContent.replace(/\}(import\s)/g, '}\n\n$1');
+
   // Check for now-unused imports after removing exports
   const unusedImports = findUnusedImportsAfterRemoval(
     newContent,
